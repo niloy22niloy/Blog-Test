@@ -34,7 +34,10 @@ Category must be added from the admin panel, otherwise Post will not added.Besid
 - Find the user name and passowrd of admin from the UsersTableSeeder
 
 ## Admin url
-
+- /admin/
+## User url
+- user/register
+- user/login
 
 
 
