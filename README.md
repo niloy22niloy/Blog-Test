@@ -27,11 +27,11 @@ It is a very simple blog system where user can only upload,delete,view and creat
 Category must be added from the admin panel, otherwise Post will not added.
 
 ## Installation
-First=>download the file
-Secondly=>add db name otherwise you will see an error
-Thirdly=>after db name,migrate the migration file
-Fourth=>Then seed the UsersTableSeeder 
-Last=>Find the user name and passowrd of admin from the UsersTableSeeder
+- download the file
+- add db name otherwise you will see an error
+- after db name,migrate the migration file
+- Then seed the UsersTableSeeder 
+- Find the user name and passowrd of admin from the UsersTableSeeder
 
 
 
