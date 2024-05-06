@@ -24,7 +24,7 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 ## About Blog System
 
 It is a very simple blog system where user can only upload,delete,view and create the posts. User Can Give comments and reply for only 1 level. It is not nested comment. 
-Category must be added from the admin panel, otherwise Post will not added.
+Category must be added from the admin panel, otherwise Post will not added.Besides Proper Validation is done for both post added,user
 
 ## Installation
 - download the file
@@ -32,6 +32,9 @@ Category must be added from the admin panel, otherwise Post will not added.
 - after db name,migrate the migration file
 - Then seed the UsersTableSeeder 
 - Find the user name and passowrd of admin from the UsersTableSeeder
+
+## Admin url
+
 
 
 
