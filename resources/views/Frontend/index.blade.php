@@ -1,0 +1,102 @@
+@extends('Frontend.layouts.app')
+@section('content')
+    <div id="colorlib-page">
+        <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+        @include('Frontend.sidebar')
+        <!-- END COLORLIB-ASIDE -->
+        <div id="colorlib-main">
+            <section class="ftco-section ftco-no-pt ftco-no-pb bg-light">
+                <div class="container px-0">
+                    <div class="row no-gutters">
+                        @forelse($blog as $bl)
+                        <div class="col-md-4 d-flex">
+                            <div class="blog-entry ftco-animate ">
+                                <div class="carousel-blog owl-carousel">
+                                    <div class="item">
+                                        <a href="single.html" class="img"
+                                            style="background-image: url({{asset('Blog_thumbnail_image/'.$bl->image)}});"></a>
+                                    </div>
+                                 
+                                </div>
+                                <div class="text p-4">
+                                    {{-- <h3 class="mb-2"><a href="single.html">{{$bl->title}}</a></h3> --}}
+                                    <div class="meta-wrap">
+                                        <p class="meta">
+                                            <span><i class="icon-calendar mr-2"></i>{{$bl->created_at->format('M. d, Y')}}({{$bl->created_at->diffForHumans()}})</span>
+                                            
+                                            <span><a href="single.html"><i class="icon-folder-o mr-2"></i>{{ $bl->rel_to_category->category_name }}</a></span>
+                                            <?php
+                                            $comment_count = App\Models\Comments::where('post_id',$bl->id)->get();
+                                            
+                                            ?>
+                                            <span>{{ count($comment_count) }}</span>
+                                        </p>
+                                    </div>
+                                    <p class="mb-4">{{$bl->title}}</p>
+                                    <p><a href="{{route('blog.details',$bl->slug)}}" class="btn-custom">Read More <span
+                                                class="ion-ios-arrow-forward"></span></a></p>
+                                </div>
+                            </div>
+                        </div>
+                        @empty
+                        <div class="card bg-success mx-auto mt-5 ">
+                            <h3 class="text-light text-center pl-4 pr-4 pt-2">No Blog Post Added Yet.  
+                                <h3 class="text-light text-center pl-3 pr-3 pt-2">{{ Auth::guard('user')->check() ? 'See the dashboard and add post' : 'Register/Login to see the dashboard and add post' }}</h3>
+
+                    </div>
+                        @endforelse
+                       
+                    
+                    </div>
+                </div>
+            </section>
+        </div><!-- END COLORLIB-MAIN -->
+    </div>
+
+    
+    
+    @if(session('error'))
+<script>
+    Swal.fire({
+  icon: "error",
+  title: "{{session('error')}}",
+  text: "Something went wrong!",
+ 
+});
+</script>
+@endif
+@if(session('success'))
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
+    Toast.fire({
+        icon: "success",
+        title: "{{ session('success') }}"
+    });
+
+    // Display additional Swal message
+    Swal.fire({
+        title: "First Of All thanks For giving me the opportunity to do a task .For the bad health condition I could not added addition Like(password recover,email verification,add tags,add nested comment system etc. )..But i try to add your all requirements. If anything misses please let me know. Besides I need the job very urgent. I am in a critical situation. I belive you will consider my application.If you need further assistance or have any questions, feel free to ask.Phone:01742362300",
+        width: 600,
+        padding: "3em",
+        color: "#716add",
+        background: "#fff url(https://sweetalert2.github.io/images/trees.png)",
+        backdrop: `
+            rgba(0,0,123,0.4)
+            url("https://sweetalert2.github.io/images/nyan-cat.gif")
+            left top
+            no-repeat
+        `
+    });
+</script>
+@endif
+@endsection
